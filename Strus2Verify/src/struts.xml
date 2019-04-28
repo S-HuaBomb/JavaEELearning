@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="default" extends="struts-default">
+        <!-- 用户提交 -->
+        <action name="validate" class="org.easybooks.test.action.ValidateAction">
+            <result name="success">/structs2_week5/success.jsp</result>
+            <!-- 校验失败后，struts2会把页面转到名为"input"的页面中 -->
+            <result name="input">/structs2_week5/validate.jsp</result>
+        </action>
+    </package>
+</struts>

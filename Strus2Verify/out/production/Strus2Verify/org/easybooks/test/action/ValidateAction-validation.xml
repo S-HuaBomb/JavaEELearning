@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+    <field name="stu.ID">
+        <field-validator type="requiredstring">
+            <message>学号必须填！</message>
+        </field-validator>
+        <!--
+        <field-validator type="regex">
+            <param name="regexExpression"> <![CDATA[([A-Z]\w*)]]></param>
+            <message>学号第一位为大写字母，后面每一位为字母、数字、下划线</message>
+        </field-validator>
+        -->
+        <field-validator type="regex">
+            <param name="regexExpression"> <![CDATA[([1-9][6-9]\d{6})]]> </param>
+            <message>学号前两位大于"15"并且后 6 位必须为数字!</message>
+        </field-validator>
+    </field>
+    
+    <!-- 需要校验的字段名-->
+    <field name="stu.name">
+        <!-- type值为校验器名，非空字符串校验器，即必填 -->
+        <field-validator type="requiredstring">
+            <!-- 去空格 -->
+            <param name="trim">true</param>
+            <!-- 错误提示信息 -->
+            <message>姓名必须填！</message>
+        </field-validator>
+    </field>
+
+    <field name="stu.major">
+        <field-validator type="requiredstring">
+            <message>专业信息必须填！</message>
+        </field-validator>
+    </field>
+
+    <field name="stu.birth">
+        <field-validator type="date">
+            <param name="min">1995-01-01</param>
+            <param name="max">2001-04-25</param>
+            <message>生日必须在1995-01-01 至 2001-04-25 之间</message>
+        </field-validator>
+    </field>
+    
+    <field name="stu.grade">
+        <field-validator type="requiredstring">
+            <message>成绩必须填！</message>
+        </field-validator>
+        <field-validator type="fieldexpression">
+            <param name="expression"><![CDATA[(stu.grade >= 0 && stu.grade <= 80)]]></param>
+            <message>成绩在 0 - 80 之间</message>
+        </field-validator>
+    </field>
+
+    <field name="stu.email">
+        <!-- 非空校验器 -->
+        <field-validator type="requiredstring">
+            <message>邮箱不能为空！</message>
+        </field-validator>
+        
+        <!-- 一个字段可以配置多个校验器 -->
+        <field-validator type="email">
+            <message>邮箱格式不正确！</message>
+        </field-validator>
+    </field>
+</validators>
